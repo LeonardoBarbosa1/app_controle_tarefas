@@ -15,21 +15,28 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 });
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Auth::routes(['verify'=>true]);
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Verificação de email
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')
+// ->middleware('verified');
 
-Route::resource("tarefa", "App\Http\Controllers\TarefaController");
+Route::get('tarefa/exportacao/{extencao}', "App\Http\Controllers\TarefaController@exportacao" )->name('tarefa.exportacao');
+Route::get('tarefa/exportar', "App\Http\Controllers\TarefaController@exportar" )->name('tarefa.exportar');
+
+Route::resource("tarefa", "App\Http\Controllers\TarefaController")->middleware('verified');
 
 Route::get('mensagem-teste', function(){
     return new MensagemTesteMail;
     // Mail::to('leonardobarbosadossantos44@gmail.com')->send(new MensagemTesteMail());
     // return 'Email enviado com sucesso!';
+});
+
+Route::fallback(function(){
+    return view('erro-url');
 });
