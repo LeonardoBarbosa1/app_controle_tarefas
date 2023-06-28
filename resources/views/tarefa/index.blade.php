@@ -20,8 +20,8 @@
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown"> 
                                     <a href="{{route('tarefa.exportacao', ['extencao' => 'xlsx'])}} " class=" dropdown-item">XLSX</a>
                                     <a href="{{route('tarefa.exportacao', ['extencao' => 'csv'])}}" class=" dropdown-item">CSV</a>
-                                    <a href="{{route('tarefa.exportacao', ['extencao' => 'pdf'])}}" class=" dropdown-item">PDF</a>
-                                    <a href="{{route('tarefa.exportar')}}" target="_blank" class=" dropdown-item">PDF V2</a>
+                                    {{-- <a href="{{route('tarefa.exportacao', ['extencao' => 'pdf'])}}" class=" dropdown-item">PDF</a> --}}
+                                    <a href="{{route('tarefa.exportar')}}" target="_blank" class=" dropdown-item">PDF</a>
                                  </div>  
 
                             </div>
