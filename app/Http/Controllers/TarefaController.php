@@ -101,7 +101,7 @@ class TarefaController extends Controller
        
         $regras = [
             'tarefa' => 'required | min:3 |max:200',
-            'data_limite_conclusao' => 'required | date'
+            'data_limite_conclusao' => 'required |date'
         ];
         $feedback = [
             'tarefa.required' => 'O campo Tarefa é obrigatório!',
@@ -109,6 +109,7 @@ class TarefaController extends Controller
             'tarefa.min' => 'O campo Tarefa deve conter no máximo 200 caracteres',
 
             'data_limite_conclusao.required' => 'O campo Data é obrigatório!',
+            'data_limite_conclusao.date_format' => 'O campo Data está incorreto'
            
         ];
 

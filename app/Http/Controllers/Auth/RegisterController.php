@@ -51,12 +51,15 @@ class RegisterController extends Controller
     {
         return Validator::make($data, 
         [
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required','min:3','string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:4', 'confirmed'],
         ],
         [
-            "password.min" => "Campo Senha deve conter pelo menos 4 caracteres!"
+            "password.min" => "Campo Senha deve conter pelo menos 4 caracteres!",
+            "name.min" => "Campo Nome deve conter pelo menos 3 letras!",
+            "password.confirmed" => "A confirmação do campo de senha não corresponde.",
+            'email.unique' => "Já existe um usuário com esse email."
         ]
     
     );

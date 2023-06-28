@@ -13,6 +13,7 @@
             }
             .tabela{
                 width: 100%;
+                
             }
             table th {
                 text-align: left;

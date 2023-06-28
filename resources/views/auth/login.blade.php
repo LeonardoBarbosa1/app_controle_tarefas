@@ -4,8 +4,16 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            <h1>Login</h1>
             <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+                <div class="card-header " >
+                    <div class="d-flex align-items-center justify-content-center">
+                        <img  style="width: 40px; 
+                        height: 40px;" src="img/logo.png" alt="">
+                    </div>
+                </div>
+
+                
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
@@ -19,7 +27,7 @@
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
+                                        <strong>Essas credenciais não correspondem aos nossos registros.</strong>
                                     </span>
                                 @enderror
                             </div>
