@@ -36,18 +36,34 @@
                             <th scope="col">ID</th>
                             <th scope="col">Tarefa</th>
                             <th scope="col">Data limite conclusão</th>
+                            <th scope="col">Situação</th>
                             <th></th>
                             <th></th>
                             
                           </tr>
                         </thead>
                         <tbody>
+                            
                             @foreach ($tarefas as $key => $t)
                                 <tr>
                                     <th scope="row">{{ $t['id'] }}</th>
                                     <td>{{ $t['tarefa'] }}</td>
                                     <td>{{ date('d/m/Y', strtotime($t['data_limite_conclusao'])) }}</td>
-
+                                    <td> 
+                                        @if($t->situacao)
+                                            
+                                            @if($t->situacao->situacao == "CONCLUÍDO")
+                                                <span class="text-success fw-bold">{{ $t->situacao->situacao }}</span> 
+                                            @elseif ($t->situacao->situacao == "PENDENTE")
+                                                <span class="text-warning fw-bold" >{{ $t->situacao->situacao }}</span> 
+                                            @elseif ($t->situacao->situacao == "CANCELADO")
+                                                <span class="text-danger fw-bold">{{ $t->situacao->situacao }}</span>     
+                                            @endif
+                                        @else
+                                        
+                                        <span class=" fw-bold">N/A</span>     
+                                    
+                                        @endif</td>
                                     <td> 
                                         <a class="bg-primary px-1 p-1" href="{{ route('tarefa.edit',$t['id'])}}">
                                             <img 

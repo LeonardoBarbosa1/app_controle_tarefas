@@ -33,6 +33,7 @@
                     <th>ID</th>
                     <th>Tarefa</th>
                     <th>Data limite conclusão</th>
+                    <th>Situação</th>
                 </tr>
             </thead>
             <tbody>
@@ -41,6 +42,13 @@
                         <td>{{ $tarefa->id }} </td>
                         <td>{{ $tarefa->tarefa }} </td>
                         <td>{{ date('d/m/Y', strtotime($tarefa->data_limite_conclusao)) }} </td>
+                        <td> 
+                            @if($tarefa->situacao)
+                                {{$tarefa->situacao->situacao}}
+                            @else
+                                N/A
+                            @endif</td>
+                        <td> 
                     </tr>
                 @endforeach
             </tbody>

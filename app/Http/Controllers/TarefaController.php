@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\TarefasExport;
+use App\Models\Situacao;
 use Maatwebsite\Excel\Facades\Excel;
 use Mail;
 use App\Mail\NovaTarefaMail;
@@ -23,9 +24,11 @@ class TarefaController extends Controller
      */
     public function index()
     {
-        $user_id = auth()->user()->id;
         
-        $tarefas = Tarefa::where('user_id', $user_id)->paginate(10);
+        $user_id = auth()->user()->id;
+        $tarefas = Tarefa::with("situacao")->where('user_id', $user_id)->paginate(10);
+        //$tarefas = Tarefa::where('user_id', $user_id)->paginate(10);
+        
         return view("tarefa.index", ['tarefas'=>$tarefas]);
         
     }
@@ -35,7 +38,8 @@ class TarefaController extends Controller
      */
     public function create()
     {
-        return view("tarefa.create");
+        $situacoes = Situacao::all();
+        return view("tarefa.create", ['situacoes' => $situacoes]);
     }
 
     /**
@@ -43,7 +47,7 @@ class TarefaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
         $regras = [
             'tarefa' => 'required | min:3 |max:200',
             'data_limite_conclusao' => 'required | date'
@@ -59,7 +63,7 @@ class TarefaController extends Controller
 
         $request->validate($regras, $feedback );
 
-        $dados = $request->all('tarefa','data_limite_conclusao');
+        $dados = $request->all('tarefa','data_limite_conclusao','situacao_id');
 
         $dados['user_id'] = auth()->user()->id;
 
@@ -76,6 +80,7 @@ class TarefaController extends Controller
      */
     public function show(Tarefa $tarefa)
     {
+        
         return view('tarefa.show',['tarefa'=>$tarefa]);
     }
 
@@ -86,10 +91,11 @@ class TarefaController extends Controller
     {
         //verificando se o usuário pode ter acesso a tarefa em questão
         $user_id = auth()->user()->id;
+        $situacoes = Situacao::all();
         if(! $tarefa->user_id == $user_id){
             return view('acesso-negado');
         } else {
-            return view('tarefa.edit', ['tarefa' => $tarefa]);
+            return view('tarefa.edit', ['tarefa' => $tarefa, 'situacoes' => $situacoes]);
         }
     }
 
