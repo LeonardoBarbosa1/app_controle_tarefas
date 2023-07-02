@@ -23,9 +23,11 @@
                 page-break-after: always;
             }
         </style>
+       
     </head>
 
     <body>
+        
         <div class="titulo">Lista de Tarefas</div>
         <table class="tabela">
             <thead>
@@ -50,13 +52,18 @@
                             @endif</td>
                         <td> 
                     </tr>
+                    <div class="page-break"></div>
+                    
                 @endforeach
             </tbody>
+            
+            
+            
         </table>
 
     {{-- Quebra de Página --}}
-        {{-- <div class="page-break"></div>
-        <h1>Quebra de Página</h1> --}}
+        
+        
         
     </body>
 </html>

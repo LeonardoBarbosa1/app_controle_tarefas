@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-            <div class="card-header">Olá Falta pouco agora! Precisamos apenas que você valide seu e-mail</div>
+            <div class="card-header">Olá {{Auth::user()->name}} Falta pouco agora! Precisamos apenas que você valide seu e-mail</div>
 
                 <div class="card-body">
                     @if (session('resent'))

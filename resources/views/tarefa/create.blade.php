@@ -46,10 +46,10 @@
                                 </span>
                             @enderror
                         </div>
-                        <div class="mb-3 form-check">
+                        {{-- <div class="mb-3 form-check">
                           <input type="checkbox" class="form-check-input" id="exampleCheck1">
                           
-                        </div>
+                        </div> --}}
                         <button type="submit" class="btn btn-primary">Salvar</button>
                       </form>
                 </div>
